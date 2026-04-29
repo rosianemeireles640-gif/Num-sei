@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agora Somos Namorados!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #ffb6c1, #ffc0cb);
+        }
+
+        .intro-text {
+            background: rgba(255, 182, 193, 0.8);
+            border: 2px solid #ff69b4;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 800px;
+            color: #8b0000;
+            text-align: justify;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 130px;
+        }
+
+        .intro-text h1 {
+            color: #ff1493;
+            text-align: center;
+            font-size: 2.5em;
+        }
+
+        .intro-text p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .frame {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            animation: up 3s linear infinite;
+        }
+
+        @keyframes up {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background: rgb(175, 68, 109);
+        }
+
+        .envelope::before {
+            background: rgb(230, 116, 159);
+            content: '';
+            position: absolute;
+            width: 212px;
+            height: 212px;
+            transform: rotate(45deg);
+            top: -105px;
+            left: 44px;
+            border-radius: 30px 0 0 0;
+        }
+
+        .card {
+            position: absolute;
+            width: 270px;
+            height: 170px;
+            top: 5px;
+            left: 15px;
+            box-shadow: -5px -5px 100px rgba(0, 0, 0, 0.4);
+            overflow: hidden; /* Ensure the image fits within the card */
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px; /* Rounded corners for the image */
+        }
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-content button {
+            padding: 10px 20px;
+            background: #ff1493;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .popup-content button:hover {
+            background: #e01483;
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-text">
+        <h1>Erika Maia</h1>
+        <p>
+            Agradeço ao universo, destino ou coincidência por terem colocado você em meu caminho, que me acolhe, 
+            me passa confiança rumo à vida.
+        </p>
+        <p>
+            Queria saber o que você pensa quando alguém fala de mim pra você,
+             ou quando você escuta meu nome. Queria saber como você se sente quando
+              vê alguém com o meu perfume ou com o mesmo jeito que o meu.
+               Eu fico me perguntando se seu coração acelera quando me vê Online,
+                ou quando recebe alguma mensagem minha. E eu fico me perguntando
+                 se você sente em relação a mim, o mesmo que eu sinto em relação a você.
+        </p>
+        <p>
+            Vivemos procurando alguém para amar, para chamar de nosso, pra viver do nosso lado por um bom e longo tempo. E a melhor coisa do mundo é quando encontramos esse alguém e um algo fora daquilo que vivemos, e não esperamos temos medo, mas e normal ter medo de ser feliz de viver aquilo que algum dia não vislumbramos, mas eu aceito viver esse medo com você, eu poderia planejar várias coisas mas você e simples então....
+        </p>
+        <p>
+            Gostaria de saber se você aceita iniciar uma jornada comigo nessa vida? Primeiramente um namoro ! Aonde eu desejo conhecer você realmente! E daí em diante a vontade de DEUS!
+
+        </p>
+    </div>
+
+    
+
+    <div class="container">
+        <div class="frame">
+            <div class="envelope">
+                <div class="card">
+                    <img src="https://i.imgur.com/tmAnppr.jpeg" alt="Cartão de Amor">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup para tocar música -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <p>Clique no botão abaixo para tocar a música!</p>
+            <button id="playButton">Tocar Música</button>
+        </div>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="https://raw.githubusercontent.com/alanxdpro/psmodsnamoro/5aa81c0f7267e9a161b5ac43e99ec41c43a3f605/Iris(MP3_160K)_1.mp3" type="audio/mp3">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+    <script>
+        const popup = document.getElementById('popup');
+        const playButton = document.getElementById('playButton');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+
+        playButton.addEventListener('click', () => {
+            backgroundMusic.play();
+            popup.style.display = 'none'; // Esconde o popup
+        });
+    </script>
+</body>
+</html>
