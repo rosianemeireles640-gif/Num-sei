@@ -62,3 +62,9 @@ btnNao.addEventListener("touchstart", function () {
 
 // Movimentação automática do botão "Não" em intervalos
 setInterval(moveButton, 900);
+// Redireciona para a próxima página ao clicar em "não"
+btnYes.addEventListener("click", function () {
+    const nextPage = "corpo.html"; // Caminho da nova página
+    window.location.href = nextPage;
+});
+
