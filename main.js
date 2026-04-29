@@ -61,4 +61,4 @@ btnNao.addEventListener("touchstart", function () {
 });
 
 // Movimentação automática do botão "Não" em intervalos
-setInterval(moveButton, 1500);
+setInterval(moveButton, 900);
